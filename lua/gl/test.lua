@@ -267,7 +267,6 @@ function TestRun:set_keymaps(bufnr)
   )
 end
 
--- TODO: Still not sure how I want to actually open this.
 function TestRun.goto_file()
   local run = assert(TestRun._current_run, "Must have an existing run")
 
@@ -277,7 +276,7 @@ function TestRun.goto_file()
   local failed_file = vim.fn.expand("<cfile>")
   local failed_line = vim.split(vim.fn.expand("<cWORD>"), ":")[2]
 
-  vim.cmd('split ' .. test_dir .. "/" .. failed_file)
+  vim.cmd('e ' .. test_dir .. "/" .. failed_file)
   if failed_line then
     vim.api.nvim_win_set_cursor(0, { tonumber(failed_line), 1 })
   end
